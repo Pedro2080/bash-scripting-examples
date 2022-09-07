@@ -201,3 +201,134 @@ echo "I like coding" > test.txt
 cat test.txt
 ```
 
+21. Write a script that create a new file and lists all the existing items in the current directory
+```sh
+#! /bin/bash
+
+touch new-file.txt
+
+ls
+```
+
+22. Using the "Link" command createa copy of an existing file, Write a messago into it, and display the file content
+```sh
+#! /bin/bash
+
+ln -s new-file.txt link1
+ls
+
+echo "Echoing from the the file link1" >> link1
+
+# link is the copy of file new-file.txt
+
+cat link1
+```
+
+23. Define an underscore variable with a message, create a new file, use underscore variable to Append to this new file and display.
+```sh
+#! /bin/bash
+
+UND_VAR="Hello everyone, this is an underscore variable"
+touch new-file.txt
+echo "$UND_VAR" > new-file.txt
+cat new-file.txt
+```
+
+24. Let Command Arithmetic
+```sh
+#! /bin/bash
+
+let a=5
+let b=10
+let c=a+b
+
+echo "$a $b $c"
+```
+
+25. Using "expr" perform 4 Basic Operators: Add, Subtract, Multiply, Divide 
+```sh
+#! /bin/bash
+
+num1=10
+num2=2
+
+expr $num1 + $num2
+expr $num1 - $num2
+expr $num1 \* $num2
+expr $num1 / $num2
+```
+
+26. Increment a variable 3 times with Increment Operator 
+```sh
+#! /bin/bash
+
+VAR=1
+
+echo "$VAR"
+VAR=$((VAR+=1))
+
+echo "$VAR"
+VAR=$((VAR+=1))
+
+echo "$VAR"
+VAR=$((VAR+=1))
+
+echo "$VAR"
+VAR=$((VAR+=1))
+```
+
+27. Decrement a variable 3 times with Decrement Operator 
+```sh
+#! /bin/bash
+
+VAR=4
+
+echo "$VAR"
+VAR=$((VAR-=1))
+
+echo "$VAR"
+VAR=$((VAR-=1))
+
+echo "$VAR"
+VAR=$((VAR-=1))
+
+echo "$VAR"
+VAR=$((VAR-=1))
+```
+
+28. Combine Strings In One Line With Variables 
+```sh
+#! /bin/bash
+
+VAR1="Hello World"
+VAR2="Let's concatenate"
+VAR3="Let's do it again"
+CONCATENATION="${VAR1} ${VAR2} ${VAR3}"
+
+echo "$CONCATENATION"
+```
+
+29. Create Multi-Line String Variable with HEREDOC 
+```sh
+#! /bin/bash
+
+VAR=$(cat<<'END_HEREDOC'
+Here we could
+write
+multi line string
+using heredoc
+END_HEREDOC
+)
+
+echo "$VAR"
+```
+
+30. Cat Multi-Line HEREDOC Text 
+```sh
+#! /bin/bash
+
+cat<<MULTI_LINE
+The current working directory is: $PWD
+You are logged in as: $(whoami)
+MULTI_LINE
+```

@@ -332,3 +332,212 @@ The current working directory is: $PWD
 You are logged in as: $(whoami)
 MULTI_LINE
 ```
+
+31. Test if File exists
+```sh
+#! /bin/bash
+
+FILE="file1.txt"
+if [ -e "$FILE" ]
+then
+    echo "$FILE exists!"
+else
+    echo "$FILE doesn't exist!"
+fi
+
+########
+# -d file   True if the file is a directory
+# -e file   True if the file exists (note that this is not particularly portable, thus -f is generally used)
+# -f file   True if the provided string is a file
+# -g file   True if the group id is set on a file
+# -r file   True if the file is readable
+# -s file   True if the file has a non-zero size
+# -u        True if the user id is set on a file
+# -w        True if the file is writable
+# -x        True if the file is an executable
+# -z        True if the string/file is not empty
+########
+```
+
+
+32. Test if File is not zero size.
+```sh
+#! /bin/bash
+
+FILE="file1.txt"
+if [ -s "$FILE" ]
+then
+    echo "$FILE is not of zero size or not empty!"
+else
+    echo "$FILE is of zero size or empty!"
+fi
+```
+
+
+33. Test if File is a Directory
+```sh
+#! /bin/bash
+
+PATH=dir
+if [[ -d $PATH ]]
+then
+    echo "$PATH is a directory and not file"
+
+elif [[ -f $PATH ]]
+then
+    echo "$PATH is a file and not a directory"
+else
+    echo "$PATH is not valid"
+fi
+```
+
+
+34. Test if a file is A Symbolic Link
+```sh
+#! /bin/bash
+
+FILE=link1
+if [[ -L "$FILE" ]]
+then
+    echo "$FILE is a symbolic link"
+else
+    echo "$FILE is not a symbolic link"
+fi
+```
+
+
+35. Test if a File has Permission: Read, Write, Execute
+```sh
+#! /bin/bash
+
+FILE=script1.sh
+
+# Test if file has read permission
+if [[ -r $FILE ]]
+then
+    echo "$FILE has read permission"
+else
+    echo "$FILE doesn't have read permission"
+fi
+
+
+# Test if file has write permission
+if [[ -w $FILE ]]
+then
+    echo "$FILE has write permission"
+else
+    echo "$FILE doesn't have write permission"
+fi
+
+
+# Test if file has executation permission
+if [[ -x $FILE ]]
+then
+    echo "$FILE has execution permission"
+else
+    echo "$FILE doesn't have execution permission"
+fi
+```
+
+
+36. Case Conditional Statement With Numbers
+```sh
+#! /bin/bash
+
+VAR=10
+case $VAR in
+    10)
+        echo "it's 10"
+        ;;
+    20)
+        echo "it's 20"
+        ;;
+    30)
+        echo "it's 30"
+        ;;
+    *)
+        echo "number is not 10 or 20 or 30, it's something else"
+        ;;
+esac
+```
+
+
+37. Case Conditional Statement With Strings
+```sh
+#! /bin/bash
+
+CAR="BMW"
+case $CAR in
+    Audi)
+        echo "it's an Audi"
+        ;;
+    Mercedes)
+        echo "it's a Mercedes"
+        ;;
+    BMW)
+        echo "it's a BMW"
+        ;;
+    *)
+        echo "It's some other brand"
+        ;;
+esac
+```
+
+
+38. Case Conditional Statement With Wildcards (user input)
+```sh
+#! /bin/bash
+
+# example 1
+case $1 in      #evaluting the first word
+    req*)
+        echo "it's a requirement or request"
+        ;;
+    meet*)
+        echo "it's a meeting"
+        ;;
+    *)
+        echo "This is a default statement"
+esac
+
+# executing the file
+# ./script38.sh "some word"
+
+
+# example 2
+# CASE - SWITCH
+read -p "Are you 21 or over? Y/N " ANSWER   # what does -p do?
+case "$ANSWER" in
+    [yY] | [yY][eE][sS])
+        echo "You can get a driving license"
+        ;; # -> break
+    [nN] | [nN][oO])
+        echo "Sorry, no drinking"
+        ;; 
+    *)
+        echo "Please enter y/yes or n/no"
+        ;;
+esac
+```
+
+
+39. Execute a Command And Capture STDERR (standard error) into a new file
+```sh
+#! /bin/bash
+
+VAR=$(cat file.txt)
+$VAR > stderr.txt
+```
+
+
+40. Execute a Command And Capture the return Code
+```sh
+#! /bin/bash
+
+VAR=$(cat file.txt)
+echo "$VAR"
+echo $? > returncode.txt
+
+# $? -> capture the return code
+```
+

@@ -541,3 +541,172 @@ echo $? > returncode.txt
 # $? -> capture the return code
 ```
 
+41. Bash Exec Command Hello World
+```sh
+#! /bin/bash
+
+exec > new-file.txt
+echo "Hello World!!!"
+```
+
+42. For Loop - iterating over a sequence of numbers (from 1 to 10)
+```sh
+#! usr/bin/env bash
+
+# example 1 
+for i in `seq 0 10`;
+do
+    echo $i
+done
+
+
+# example 2 
+for i in 1 2 3 4 5 6 7 8 9 10;
+do
+    echo "the value is: $i"
+done
+
+
+# example 3
+for i in {1..10};
+do
+    echo "the value is: $i"
+done
+```
+
+43. For loop - Read a content of a file Using
+```sh
+#! usr/bin/env bash
+
+for i in $(cat file.txt);
+do
+    echo "$i"
+done
+```
+
+
+44. For loop - List all the files in the same directory
+```sh
+#! usr/bin/env bash
+
+for i in ./ *;
+do
+    echo "$i"
+done
+```
+
+
+45. For loop - Changing the names of the files
+```sh
+#! usr/bin/env bash
+
+FILES=$(ls *.txt)
+NEW="new"
+
+for FILE in $FILES
+    do
+        echo "Renaming $FILE to new-$FILE"
+        mv $FILE $NEW-$FILE
+done
+```
+
+
+46. For loop - iterating through an array using counter variable
+```sh
+#! usr/bin/env bash
+
+arr=("bash" "shell" "script")
+length=${#arr[@]}   #the length of an array 
+
+#for loop
+for (( i=0; i<${length}; i++ ));
+do
+    echo $i " : " ${arr[$i]}
+done
+```
+
+
+47. For loop with Conditional Break
+```sh
+#! usr/bin/env bash
+
+# example 1
+for i in {1..10};
+do
+    if (( $i < 5 ));
+    then
+        echo $i;
+    else
+        break;
+    fi
+done
+
+# example 2
+
+arr=(1 2 3 4)
+for i in "${arr[@]}"
+do
+    echo $i
+    if [ $i == 3 ];
+    then
+        break
+    fi
+done
+```
+
+
+48. For loop with Conditional Continue
+```sh
+#! usr/bin/env bash
+
+for i in {1..10};
+do
+    if (( $i == 5 ));
+    then
+        continue;
+    else
+        echo $i;
+    fi
+done
+```
+
+
+49. While loop - print hello once and break from the loop
+```sh
+#! usr/bin/env bash
+
+# example 3
+while true;
+    do echo "hello" && break
+done
+```
+
+
+50. While loop - Print numbers from 1 to 5
+```sh
+#! usr/bin/env bash
+
+# example 1
+i=0
+
+while (( ++i <= 5));
+do
+    echo "counter is at $i"
+done
+
+
+
+# example 2
+a=1
+b=2
+count=10
+
+while [[ $a -lt $count && $b -lt 5 ]];
+do
+    a=$(( a + 1 ))
+    b=$(( b + 1 ))
+
+    echo "a = $a and b = $b"
+done
+```
+
